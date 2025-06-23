@@ -1,0 +1,31 @@
+# Folder node_modules
+node_modules/
+
+# File environment
+.env
+!.env.example
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache
+.cache/
+dist/
+build/
+
+# Editor/IDE
+.vscode/
+*.swp
+.DS_Store
+
+# Database lokal (jika ada)
+*.sqlite
+*.db
+
+# Output Swagger JSON (jika auto-generate)
+swagger.json
+
+# Testing
+coverage/

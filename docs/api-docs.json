@@ -1,0 +1,161 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "CURD-blog-article",
+    "description": "Dokumentasi API sederhana untuk manajemen artikel blog menggunakan Express dan Supabase. Mendukung operasi create, read, update, dan delete (CRUD).",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000",
+      "description": "localhost"
+    }
+  ],
+  "tags": [
+    {
+      "name": "article",
+      "description": "Endpoint untuk operasi CRUD artikel"
+    }
+  ],
+  "paths": {
+    "/article": {
+      "get": {
+        "tags": ["article"],
+        "summary": "Ambil semua artikel",
+        "description": "Mengembalikan daftar semua artikel dalam database.",
+        "responses": {
+          "200": {
+            "description": "Berhasil mengambil data"
+          },
+          "500": {
+            "description": "Gagal mengambil data"
+          }
+        }
+      },
+      "post": {
+        "tags": ["article"],
+        "summary": "Tambah artikel baru",
+        "description": "Menambahkan artikel baru ke dalam database.",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  }
+                },
+                "required": ["title", "content","author","category"]
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Artikel berhasil ditambahkan"
+          },
+          "400": {
+            "description": "Kategori tidak valid"
+          },
+          "500": {
+            "description": "Permintaan tidak valid"
+          }
+        }
+      }
+    },
+    "/article/{id}": {
+      "put": {
+        "tags": ["article"],
+        "summary": "Perbarui artikel berdasarkan ID",
+        "description": "Memperbarui data artikel berdasarkan ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID artikel"
+          }
+        ],
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "title": {
+                    "type": "string"
+                  },
+                  "content": {
+                    "type": "string"
+                  },
+                  "author": {
+                    "type": "string"
+                  },
+                  "category": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Artikel berhasil diperbarui"
+          },
+          "404": {
+            "description": "Artikel tidak ditemukan"
+          },
+          "400": {
+            "description": "Kategori tidak valid"
+          },
+          "500": {
+            "description": "Gagal memperbarui data"
+          }
+        }
+      },
+      "delete": {
+        "tags": ["article"],
+        "summary": "Hapus artikel berdasarkan ID",
+        "description": "Menghapus artikel berdasarkan ID.",
+        "parameters": [
+          {
+            "in": "path",
+            "name": "id",
+            "required": true,
+            "schema": {
+              "type": "integer"
+            },
+            "description": "ID artikel"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Artikel berhasil dihapus"
+          },
+          "404": {
+            "description": "Artikel tidak ditemukan"
+          },
+          "500": {
+            "description": "Gagal menghapus artikel"
+          }
+        }
+      }
+    }
+  }
+}
