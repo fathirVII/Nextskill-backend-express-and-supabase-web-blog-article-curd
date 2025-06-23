@@ -1,5 +1,3 @@
----
-
 ````markdown
 # NextSkill Backend - Express & Supabase Web Blog Article CRUD
 
